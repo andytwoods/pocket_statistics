@@ -1,43 +1,31 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:statistical_power/widgets/base_container.dart';
 
-class MyEditable extends StatefulWidget{
+class MyEditable extends StatelessWidget {
 
+  @required
   final String title;
+  @required
+  final Function onChanged;
+  @required
+  final TextEditingController controller;
 
-  MyEditable(this.title);
-
-  @override
-  MyEditableState createState() {
-    return new MyEditableState();
-  }
-}
-
-class MyEditableState extends State<MyEditable> {
-
-  TextEditingController controller = new TextEditingController();
+  MyEditable({this.title, this.onChanged, this.controller});
 
   @override
   Widget build(BuildContext context) {
-    return  Flexible(
-      child: Padding(
-        padding: const EdgeInsets.only(top: 18.0),
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
-            color: Colors.lightGreenAccent,
-          ),
-          child: TextField(
-            controller: controller,
-              keyboardType: TextInputType.numberWithOptions(decimal: true, signed: true),
-              decoration: InputDecoration(
-                  labelText: widget.title,
-                prefixIcon: Icon(Icons.edit)
-              )
-          ),
-        ),
-      ),
-    );
+    return MyContainer(
+        color: Colors.lightGreenAccent,
+        child: TextField(
+        controller: controller,
+        onChanged: (_)=> onChanged(),
+        keyboardType: TextInputType.numberWithOptions(
+            decimal: true, signed: true),
+        decoration: InputDecoration(
+            labelText: title,
+            prefixIcon: Icon(Icons.edit)
+        )
+    ));
   }
 }
+
