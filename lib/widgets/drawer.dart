@@ -16,7 +16,7 @@ class StatsDrawer extends StatelessWidget {
             );
 
             return new ListTile(
-              title: new Text("Item => 1"),
+              title: new Text("Item => $index"),
               onTap: () {
 
               },
