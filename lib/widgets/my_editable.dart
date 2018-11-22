@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:statistical_power/widgets/base_container.dart';
 
-class MyEditable extends StatelessWidget {
+class MyEditable extends ValueStatelessWidget {
 
   @required
   final String title;
@@ -15,6 +15,7 @@ class MyEditable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyContainer(
+        retrieveValue: ()=> controller.text,
         color: Colors.lightGreenAccent,
         child: TextField(
         controller: controller,
@@ -26,6 +27,11 @@ class MyEditable extends StatelessWidget {
             prefixIcon: Icon(Icons.edit)
         )
     ));
+  }
+
+  @override
+  String retrieveValue() {
+    return controller.text;
   }
 }
 

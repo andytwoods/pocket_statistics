@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:statistical_power/widgets/base_container.dart';
 
-class MyResult extends StatelessWidget{
+class MyResult extends ValueStatelessWidget{
 
   @required
   final String title;
@@ -16,6 +16,7 @@ class MyResult extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return  MyContainer(
+      retrieveValue: ()=> value,
       color: Colors.yellowAccent,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -47,4 +48,10 @@ class MyResult extends StatelessWidget{
       ),
     );
   }
+
+  @override
+  String retrieveValue() {
+    return value;
+  }
 }
+

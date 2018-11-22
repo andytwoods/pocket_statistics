@@ -29,12 +29,14 @@ class DsFromTForIndependentSamplesState
     double _tValue = double.parse(tValue.text);
 
     _cohens_d = 2*_tValue / sqrt(_totalN);
-    _p = tDist(_tValue.abs(), _totalN-2);
     _hedges_g = _cohens_d*(1-(3/(4*(_totalN)-9)));
     _df=_totalN - 2;
+    _p = tDist(_tValue.abs(), _totalN-2);
+    //Normal cl = Normal(10.0, 2.0);
+    //_CL = cl.cdf(6.0);
 
-    StudentT st = StudentT(_df);
-    print(st.cdf(_tValue));
+    StudentT st = StudentT(29.0);
+    print(st.pdf(1.1));
 
     setState(() {});
   }
@@ -42,7 +44,9 @@ class DsFromTForIndependentSamplesState
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(children: [
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
         MyTitle('dₛ from t independent samples'),
         Row(
           children: <Widget>[

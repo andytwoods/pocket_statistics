@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 
 import 'package:statistical_power/dists/dists.dart';
