@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Pocket Statistics',
       theme: new ThemeData(
         //textTheme: TextTheme(),
         primarySwatch: Colors.blue,
@@ -41,18 +41,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -74,9 +62,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: DsFromTForIndependentSamples(),
       ),
       floatingActionButton: new FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: new Icon(Icons.add),
+        onPressed: (){
+
+        },
+        tooltip: 'Copy table to clipboard',
+        child: new Icon(Icons.content_copy),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

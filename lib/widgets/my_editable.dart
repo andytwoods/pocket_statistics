@@ -23,6 +23,7 @@ class MyEditable extends ValueStatelessWidget {
         keyboardType: TextInputType.numberWithOptions(
             decimal: true, signed: true),
         decoration: InputDecoration(
+            border: InputBorder.none,
             labelText: title,
             prefixIcon: Icon(Icons.edit)
         )

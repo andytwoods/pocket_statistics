@@ -17,13 +17,16 @@ class MyContainer extends StatelessWidget {
           onLongPress: (){
             String txt = retrieveValue();
             Clipboard.setData(new ClipboardData(text: txt));
+            if(txt.length>10){
+              txt = txt.substring(0,10)+'...';
+            }
             Scaffold.of(context).showSnackBar(
                 new SnackBar(content: new Text("$txt Copied to Clipboard"),));
           },
           child: Container(
               margin: EdgeInsets.all(4.0),
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
+                border: Border.all(color: Colors.black12),
                 color: color,
               ),
               child: child

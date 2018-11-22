@@ -17,26 +17,29 @@ class DsFromTForIndependentSamples extends StatefulWidget {
 
 class DsFromTForIndependentSamplesState
     extends State<DsFromTForIndependentSamples> {
-
   final TextEditingController totalN = new TextEditingController(text: '');
   final TextEditingController tValue = new TextEditingController(text: '');
 
   double _cohens_d, _p, _hedges_g, _df, _CL;
 
-  void _onChanged(){
-    if(totalN.text=='' || tValue.text=='') return;
-    double _totalN = double.parse(totalN.text);
-    double _tValue = double.parse(tValue.text);
+  void _onChanged() {
+    double _totalN = double.tryParse(totalN.text);
+    double _tValue = double.tryParse(tValue.text);
 
-    _cohens_d = 2*_tValue / sqrt(_totalN);
-    _hedges_g = _cohens_d*(1-(3/(4*(_totalN)-9)));
-    _df=_totalN - 2;
-    _p = tDist(_tValue.abs(), _totalN-2);
-    //Normal cl = Normal(10.0, 2.0);
-    //_CL = cl.cdf(6.0);
+    if (_totalN == null || _tValue == null) {
+      _cohens_d = _hedges_g = _df = _p = _CL = null;
 
-    StudentT st = StudentT(29.0);
-    print(st.pdf(1.1));
+    } else {
+      _cohens_d = 2 * _tValue / sqrt(_totalN);
+      _hedges_g = _cohens_d * (1 - (3 / (4 * (_totalN) - 9)));
+      _df = _totalN - 2;
+      _p = tDist(_tValue.abs(), _totalN - 2);
+      //Normal cl = Normal(10.0, 2.0);
+      //_CL = cl.cdf(6.0);
+
+      StudentT st = StudentT(29.0);
+      print(st.pdf(1.1));
+    }
 
     setState(() {});
   }
@@ -44,42 +47,31 @@ class DsFromTForIndependentSamplesState
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
+      child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         MyTitle('dₛ from t independent samples'),
         Row(
           children: <Widget>[
-            MyEditable(title: 'Total N', onChanged: _onChanged, controller: totalN),
-            MyEditable(title: 't-value', onChanged: _onChanged, controller: tValue)
+            MyEditable(
+                title: 'Total N', onChanged: _onChanged, controller: totalN),
+            MyEditable(
+                title: 't-value', onChanged: _onChanged, controller: tValue)
           ],
         ),
-        Row(
-          children: [
-            MyResult(title: "Cohen's dₛ ≈", value: safeVal(_cohens_d)),
-            MyResult(title: "p", value: safeVal(_p))
-          ]
-        ),
-        Row(
-            children: [
-              MyResult(title: "Hedges gₛ ≈", value: safeVal(_hedges_g)),
-              MyResult(title: "df", value: safeVal(_df))
-            ]
-        ),
-        Row(
-            children: [
-              MyResult(title: "CL ≈", value: safeVal(_CL)),
-              Blank()
-            ]
-        )
+        Row(children: [
+          MyResult(title: "Cohen's dₛ ≈", value: safeVal(_cohens_d)),
+          MyResult(title: "p", value: safeVal(_p))
+        ]),
+        Row(children: [
+          MyResult(title: "Hedges gₛ ≈", value: safeVal(_hedges_g)),
+          MyResult(title: "df", value: safeVal(_df))
+        ]),
+        Row(children: [MyResult(title: "CL ≈", value: safeVal(_CL)), Blank()])
       ]),
     );
   }
 
   String safeVal(double cohens_d) {
-    if(cohens_d==null) return '';
+    if (cohens_d == null) return '';
     return cohens_d.toString();
   }
 }
-
-
