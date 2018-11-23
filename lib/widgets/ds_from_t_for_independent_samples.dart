@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/widgets.dart';
+import 'package:statistical_power/dists/normal.dart';
 import 'package:statistical_power/dists/student_t.dart';
 import 'package:statistical_power/stats/tdist.dart';
 import 'package:statistical_power/widgets/base_container.dart';
@@ -34,11 +35,12 @@ class DsFromTForIndependentSamplesState
       _hedges_g = _cohens_d * (1 - (3 / (4 * (_totalN) - 9)));
       _df = _totalN - 2;
       _p = tDist(_tValue.abs(), _totalN - 2);
-      //Normal cl = Normal(10.0, 2.0);
-      //_CL = cl.cdf(6.0);
+      _p = (1-StudentT(_df).cdf(_tValue))*2;
 
-      StudentT st = StudentT(29.0);
-      print(st.pdf(1.1));
+      Normal cl = Normal(1.0, 1.0);
+
+      //TODO verify below is correct. 9 dp and later, some inconsistencies
+      _CL = 1-cl.cdf(1-_cohens_d /sqrt(2.0));
     }
 
     setState(() {});
