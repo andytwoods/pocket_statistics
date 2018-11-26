@@ -89,7 +89,7 @@ class CorrelatedSamplesState extends State<CorrelatedSamples> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        MyTitle('Independent samples'),
+        MyTitle('Correlated (or Dependent) Samples'),
         Row(
           children: <Widget>[
             MyEditable(
