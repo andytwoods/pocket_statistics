@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:statistical_power/dists/f.dart';
 import 'package:statistical_power/dists/normal.dart';
 import 'package:statistical_power/dists/student_t.dart';
+import 'package:statistical_power/main.dart';
 import 'package:statistical_power/stats/tdist.dart';
 import 'package:statistical_power/widgets/base_container.dart';
 import 'package:statistical_power/widgets/my_editable.dart';
@@ -72,6 +73,8 @@ class PartialNSquareAndWSquareState
   }
 
   String safeVal(double cohens_d) {
+    final AppWideInfo appWideInfo = AppWideInfo.of(context);
+    print(appWideInfo);
     if (cohens_d == null) return '';
     return cohens_d.toString();
   }

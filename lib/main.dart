@@ -26,6 +26,24 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class AppWideInfo extends InheritedWidget {
+
+  AppWideInfo({
+    Key key,
+    @required Widget child,
+    this.dp,
+  }): super(key: key, child: child);
+
+  final int dp;
+
+  static AppWideInfo of(BuildContext context) {
+    return context.inheritFromWidgetOfExactType(AppWideInfo);
+  }
+
+  @override
+  bool updateShouldNotify(AppWideInfo oldWidget) => dp != oldWidget.dp;
+}
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
@@ -46,6 +64,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  final TextEditingController dp = new TextEditingController(text: DecimalPlaces.defaultOption);
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -59,12 +79,22 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: new Text(widget.title),
+        actions: <Widget>[
+          DecimalPlaces(dp.text, (String val){
+            setState(() {
+              dp.text = val;
+            });
+          })
+        ],
       ),
       drawer: StatsDrawer(),
       body: new Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: PartialNSquareAndWSquare(),
+        child: AppWideInfo(
+            dp: DecimalPlaces.options.indexOf(dp.text),
+            child: PartialNSquareAndWSquare()
+        ),
       ),
       floatingActionButton: new FloatingActionButton(
         onPressed: (){
@@ -75,4 +105,33 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+
+class DecimalPlaces extends StatelessWidget{
+
+  static List<String> options = ['1', '2', '3', '4', '5', 'physics', 'all'];
+  static String defaultOption = options.last;
+
+  String val;
+  Function onChanged;
+
+  DecimalPlaces(this.val, this.onChanged);
+
+  @override
+  Widget build(BuildContext context) {
+    return new DropdownButton<String>(
+      hint: Text('${val} dp'),
+      items: options.map((String value) {
+        return new DropdownMenuItem<String>(
+          value: value,
+          child: new Text(value),
+        );
+      }).toList(),
+      onChanged: (val) {
+        onChanged(val);
+      },
+    );
+  }
+
+
 }
