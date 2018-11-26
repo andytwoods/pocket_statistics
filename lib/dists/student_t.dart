@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:statistical_power/dists/beta.dart';
 import 'package:statistical_power/dists/dists.dart';
 import 'package:statistical_power/math/beta.dart';
 import 'package:statistical_power/math/gamma.dart';
@@ -98,7 +99,15 @@ class StudentT extends ContinuousRV {
     return .5 + (a * b * s + atan(a)) * g1;
   }
 
+  double inv(p) {
+
+    var fac = Beta.ibetainv(2 * min<double>(p, 1 - p), this._halfDf, 0.5);
+    var y = sqrt(this.df * (1 - fac) / fac);
+    return (p > 0.5) ? y : -y;
+  }
+
   double ppf(double q) {
+    print(3);
     double fac = ibetaInv(_halfDf, 0.5, 2 * min(q, 1 - q));
     double y = sqrt(df * (1 - fac) / fac);
     return (q > 0.5) ? y : -y;

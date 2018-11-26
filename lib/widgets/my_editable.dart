@@ -17,17 +17,25 @@ class MyEditable extends ValueStatelessWidget {
     return MyContainer(
         retrieveValue: ()=> controller.text,
         color: Colors.lightGreenAccent,
-        child: TextField(
-        controller: controller,
-        onChanged: (_)=> onChanged(),
-        keyboardType: TextInputType.numberWithOptions(
-            decimal: true, signed: true),
-        decoration: InputDecoration(
-            border: InputBorder.none,
-            labelText: title,
-            prefixIcon: Icon(Icons.edit)
-        )
-    ));
+        child: Stack(
+          children: <Widget>[
+            TextField(
+              textAlign: TextAlign.center,
+            controller: controller,
+            onChanged: (_)=> onChanged(),
+            keyboardType: TextInputType.numberWithOptions(
+                decimal: true, signed: true),
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                labelText: title,
+                contentPadding: null,
+            )
+    ),
+            Align(
+                alignment: Alignment.bottomRight,
+                child: Icon(Icons.edit, size: 20.0, color: Colors.black26,))
+          ],
+        ));
   }
 
   @override
