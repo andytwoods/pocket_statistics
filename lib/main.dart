@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:statistical_power/widgets/drawer.dart';
 import 'package:statistical_power/widgets/ds_from_t_for_independent_samples.dart';
+import 'package:statistical_power/widgets/ds_from_t_for_independent_samples_with_group_ns.dart';
 
 void main() => runApp(new MyApp());
 
@@ -59,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: new Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: DsFromTForIndependentSamples(),
+        child: DsFromTForIndependentSamplesWithNs(),
       ),
       floatingActionButton: new FloatingActionButton(
         onPressed: (){

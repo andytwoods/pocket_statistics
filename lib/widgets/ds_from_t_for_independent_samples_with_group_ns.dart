@@ -9,31 +9,35 @@ import 'package:statistical_power/widgets/my_editable.dart';
 import 'package:statistical_power/widgets/my_result.dart';
 import 'package:statistical_power/widgets/title.dart';
 
-class DsFromTForIndependentSamples extends StatefulWidget {
+class DsFromTForIndependentSamplesWithNs extends StatefulWidget {
   @override
-  DsFromTForIndependentSamplesState createState() {
-    return new DsFromTForIndependentSamplesState();
+  DsFromTForIndependentSamplesNsState createState() {
+    return new DsFromTForIndependentSamplesNsState();
   }
 }
 
-class DsFromTForIndependentSamplesState
-    extends State<DsFromTForIndependentSamples> {
-  final TextEditingController totalN = new TextEditingController(text: '');
+class DsFromTForIndependentSamplesNsState
+    extends State<DsFromTForIndependentSamplesWithNs> {
+  final TextEditingController nGroup1 = new TextEditingController(text: '');
+  final TextEditingController nGroup2 = new TextEditingController(text: '');
   final TextEditingController tValue = new TextEditingController(text: '');
 
   double _cohens_d, _p, _hedges_g, _df, _CL;
 
   void _onChanged() {
-    double _totalN = double.tryParse(totalN.text);
+    double _nGroup1 = double.tryParse(nGroup1.text);
+    double _nGroup2 = double.tryParse(nGroup2.text);
     double _tValue = double.tryParse(tValue.text);
 
-    if (_totalN == null || _tValue == null) {
+    if (_nGroup1 == null || _tValue == null || _nGroup2 == null) {
       _cohens_d = _hedges_g = _df = _p = _CL = null;
 
     } else {
-      _cohens_d = 2 * _tValue / sqrt(_totalN);
-      _hedges_g = _cohens_d * (1 - (3 / (4 * (_totalN) - 9)));
-      _df = _totalN - 2;
+      _cohens_d =
+          _tValue * sqrt(_nGroup1 + _nGroup2)
+          / sqrt(_nGroup1 * _nGroup2);
+      _hedges_g = _cohens_d * (1 - (3 / (4 * (_nGroup1 + _nGroup2) - 9)));
+      _df = _nGroup1 + _nGroup2 - 2;
       _p = (1-StudentT(_df).cdf(_tValue))*2;
 
       Normal cl = Normal(1.0, 1.0);
@@ -49,11 +53,13 @@ class DsFromTForIndependentSamplesState
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        MyTitle('dₛ from t independent samples'),
+        MyTitle('dₛ from t independent samples with known values for n'),
         Row(
           children: <Widget>[
             MyEditable(
-                title: 'Total N', onChanged: _onChanged, controller: totalN),
+                title: 'n group 1', onChanged: _onChanged, controller: nGroup1),
+            MyEditable(
+                title: 'n group 2', onChanged: _onChanged, controller: nGroup2),
             MyEditable(
                 title: 't-value', onChanged: _onChanged, controller: tValue)
           ],
