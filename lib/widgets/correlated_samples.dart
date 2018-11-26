@@ -3,38 +3,38 @@ import 'dart:math';
 import 'package:flutter/widgets.dart';
 import 'package:statistical_power/dists/normal.dart';
 import 'package:statistical_power/dists/student_t.dart';
-import 'package:statistical_power/stats/tdist.dart';
 import 'package:statistical_power/widgets/base_container.dart';
 import 'package:statistical_power/widgets/my_editable.dart';
 import 'package:statistical_power/widgets/my_result.dart';
 import 'package:statistical_power/widgets/title.dart';
 
-class IndependentSamples extends StatefulWidget {
+class CorrelatedSamples extends StatefulWidget {
   @override
-  IndependentSamplesState createState() {
-    return new IndependentSamplesState();
+  CorrelatedSamplesState createState() {
+    return new CorrelatedSamplesState();
   }
 }
 
-class IndependentSamplesState extends State<IndependentSamples> {
+class CorrelatedSamplesState extends State<CorrelatedSamples> {
   final TextEditingController totalN = new TextEditingController(text: '');
   final TextEditingController tValue = new TextEditingController(text: '');
 
   final TextEditingController meanG1 = new TextEditingController(text: '');
   final TextEditingController sdG1 = new TextEditingController(text: '');
-  final TextEditingController nG1 = new TextEditingController(text: '');
+  final TextEditingController n_pairs = new TextEditingController(text: '');
+  final TextEditingController r = new TextEditingController(text: '');
 
   final TextEditingController meanG2 = new TextEditingController(text: '');
   final TextEditingController sdG2 = new TextEditingController(text: '');
-  final TextEditingController nG2 = new TextEditingController(text: '');
+
 
   String confidence_intervals;
 
-  double _cohens_d, _cohens_ds, _p, _hedges_g, _df, _CL, _meanG1, _meanG2, _sdG1, _sdG2, _nG1, _nG2, _t, ciPlus, ciMinus, ci_mean;
+  double _cohens_d, _cohens_ds, _p, _hedges_g, _df, _CL, _meanG1, _meanG2, _sdG1, _sdG2, _n_pairs, _t, ciPlus, ciMinus, ci_mean, _r, _Mdif, _Sdif, _SEdif, _hedges_gav, _cohens_dav, _cohens_dz;
 
   void _onChanged() {
 
-    if (meanG1 == null || sdG1 == null || nG1 == null || meanG2 == null || sdG2 == null || nG2 == null) {
+    if (meanG1 == null || sdG1 == null || meanG2 == null || sdG2 == null || n_pairs == null || r == null) {
       _df = null;
       ciPlus = null;
       ciMinus = null;
@@ -50,24 +50,35 @@ class IndependentSamplesState extends State<IndependentSamples> {
       _meanG2 = double.parse(meanG2.text);
       _sdG1 = double.parse(sdG1.text);
       _sdG2 = double.parse(sdG2.text);
-      _nG1 = double.parse(nG1.text);
-      _nG2 = double.parse(nG2.text);
+      _n_pairs = double.parse(n_pairs.text);
+      _r = double.parse(r.text);
 
-      _df = _nG1 + _nG2 - 2;
+      _df = _n_pairs - 1;
+      _Mdif = (_meanG1 - _meanG2).abs();
 
-      ci_mean = _meanG1 - _meanG2;
-      double ci = StudentT(_df).inv(0.05 * .5)*-1 * (sqrt((_sdG1*_sdG1/_nG1)+(_sdG2*_sdG2/_nG2)));
-      ciPlus =  ci_mean + ci;
-      ciMinus = ci_mean - ci;
 
-      _t =(_meanG1-_meanG2)/(sqrt(((((_nG1-1)*_sdG1*_sdG1)+((_nG2-1)*_sdG2*_sdG2))/(_nG1+_nG2-2))*((1/_nG1+1/_nG2))));
+      _Sdif = sqrt(_sdG1*_sdG1+_sdG2*_sdG2-2*_r*_sdG1*_sdG2);
+
+
+
+      _SEdif = sqrt(((_sdG1*_sdG1/_n_pairs)+(_sdG2*_sdG2/_n_pairs))-(2*_r*(_sdG1/sqrt(_n_pairs))*(_sdG2/sqrt(_n_pairs))));
+      _t = _Mdif/(_Sdif/sqrt(_n_pairs));
+
+      double ci = _SEdif * StudentT(_df).inv(0.05 * .5)*-1;
+      ciPlus =  _Mdif + ci;
+      ciMinus = _Mdif - ci;
+
+      _cohens_dav = _Mdif/sqrt((_sdG1*_sdG1+_sdG2*_sdG2)/2);
+      _hedges_gav = _cohens_dav*(1-(3/(4*(_n_pairs-1)-1)));
+      _cohens_dz = _Mdif / _Sdif;
+
       _p = (1 - StudentT(_df).cdf(_t.abs())) * 2;
-      _cohens_ds = (_meanG1-_meanG2)/(sqrt((((_nG1-1)*_sdG1*_sdG1)+((_nG2-1)*_sdG2*_sdG2))/(_nG1+_nG2-2))).abs();
-      _cohens_d = (_meanG1-_meanG2)/(sqrt((((_nG1-1)*_sdG1*_sdG1)+((_nG2-1)*_sdG2*_sdG2))/(_nG1+_nG2))).abs();
-      _hedges_g = _cohens_ds*(1-(3/(4*(_nG1+_nG2-2)-1)));
+
+
+
       Normal cl = Normal(1.0, 1.0);
       //TODO verify below is correct. 9 dp and later, some inconsistencies
-      _CL = 1 - cl.cdf(1 - (_meanG1-_meanG2) / sqrt(_sdG1*_sdG1 + _sdG2 * _sdG2));
+      _CL = 1 - cl.cdf(1 - (_Mdif/_Sdif));
 
     }
 
@@ -88,7 +99,7 @@ class IndependentSamplesState extends State<IndependentSamples> {
             MyEditable(
                 title: 'SD group 1', onChanged: _onChanged, controller: sdG1),
             MyEditable(
-                title: 'n group 1', onChanged: _onChanged, controller: nG1),
+                title: 'n pairs', onChanged: _onChanged, controller: n_pairs),
           ],
         ),
         Row(
@@ -100,33 +111,36 @@ class IndependentSamplesState extends State<IndependentSamples> {
             MyEditable(
                 title: 'SD group 2', onChanged: _onChanged, controller: sdG2),
             MyEditable(
-                title: 'n group 2', onChanged: _onChanged, controller: nG2),
+                title: 'r', onChanged: _onChanged, controller: r),
           ],
         ),
         Row(children: [
+          MyResult(title: "t", value: safeVal(_t)),
+          MyResult(title: "df", value: safeVal(_df)),
+        ]),
+        Row(children: [
+          MyResult(title: "Mdiff", value: safeVal(_Mdif)),
+          MyResult(title: "Sdiff", value: safeVal(_Sdif)),
+          MyResult(title: "SEdiff", value: safeVal(_SEdif)),
+        ]),
+        Row(children: [
           MyResult(title: "95% CI Mdiff High", value: safeVal(ciPlus)),
           MyResult(title: "95% CI Mdiff Low", value: safeVal(ciMinus)),
-        ]),
-        Row(children: [
-          Blank(),
-          MyResult(title: "t", value: safeVal(_t)),
-        ]),
-        Row(children: [
-          MyResult(title: "df", value: safeVal(_df)),
-          MyResult(title: "p", value: safeVal(_p))
-        ]),
-        Row(children: [
-          MyResult(title: "Cohen's dₛ", value: safeVal(_cohens_ds)),
-          MyResult(title: "Cohen's d", value: safeVal(_cohens_d))
+          MyResult(title: "p", value: safeVal(_p)),
         ]),
 
         Row(children: [
-          MyResult(title: "Hedges's gₛ", value: safeVal(_hedges_g)),
+          MyResult(title: "Cohen's dz", value: safeVal(_cohens_dz)),
+          MyResult(title: "Cohen's dₐᵥ", value: safeVal(_cohens_dav))
+        ]),
+
+        Row(children: [
+          MyResult(title: "Hedges's gav", value: safeVal(_hedges_gav)),
           MyResult(title: "CL effect size", value: safeVal(_CL))
         ]),
         _t==null?Container():Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Text('Reporting Example: Group 1 scored higher (M = 8.7, SD = 0.82) than Group 2 (M = 7.7, SD = 0.95), t(18) = 2.52, p = .022, 95% CI [0.17, 1.83], Hedges’s gs = 1.08, 95% CI [0.13, 2.01]. The CL effect size indicates that the chance that for a randomly selected pair of individuals the score of a person from Group 1 is higher than the score of a person from group 2 is 79%.'),
+          child: Text('Reporting Example: Mean 1 was higher (M = 8.7, SD = 0.82) than Mean 2 (M = 7.7, SD = 0.95),  t(9) = 4.74, p = .001, 95% CI [0.52, 1.48], Hedges’s gav = 1.03 95% CI [0.50, 1.72]. The CL effect size indicates that after controlling for individual differences, the likelihood that a person scores higher for Mean 1 than for Mean 2 is 93%'),
         )
       ]),
     );
