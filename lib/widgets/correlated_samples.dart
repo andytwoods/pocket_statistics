@@ -28,6 +28,8 @@ class CorrelatedSamplesState extends State<CorrelatedSamples> with SharedToolsMi
   final TextEditingController meanG2 = new TextEditingController(text: '');
   final TextEditingController sdG2 = new TextEditingController(text: '');
 
+  String title = 'Correlated (or Dependent) Samples';
+
 
   String confidence_intervals;
 
@@ -90,7 +92,7 @@ class CorrelatedSamplesState extends State<CorrelatedSamples> with SharedToolsMi
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        MyTitle('Correlated (or Dependent) Samples'),
+        MyTitle(title),
         Row(
           children: <Widget>[
             MyEditable(

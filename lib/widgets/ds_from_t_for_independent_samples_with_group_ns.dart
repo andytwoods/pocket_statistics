@@ -23,6 +23,8 @@ class DsFromTForIndependentSamplesNsState
   final TextEditingController nGroup2 = new TextEditingController(text: '');
   final TextEditingController tValue = new TextEditingController(text: '');
 
+  String title = 'dₛ from t independent samples with known values for n';
+
   double _cohens_d, _p, _hedges_g, _df, _CL;
 
   void _onChanged() {
@@ -54,7 +56,7 @@ class DsFromTForIndependentSamplesNsState
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        MyTitle('dₛ from t independent samples with known values for n'),
+        MyTitle(title),
         Row(
           children: <Widget>[
             MyEditable(

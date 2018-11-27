@@ -20,6 +20,8 @@ class DsFromTCorrelatedSamplesState extends State<DsFromTCorrelatedSamples> with
   final TextEditingController totalN = new TextEditingController(text: '');
   final TextEditingController tValue = new TextEditingController(text: '');
 
+  String title = 'dz from t for correlated samples';
+
   double _cohens_d, _p, _CL;
 
   void _onChanged() {

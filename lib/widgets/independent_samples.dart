@@ -29,6 +29,8 @@ class IndependentSamplesState extends State<IndependentSamples> with SharedTools
   final TextEditingController sdG2 = new TextEditingController(text: '');
   final TextEditingController nG2 = new TextEditingController(text: '');
 
+  String title = 'Independent samples';
+
   String confidence_intervals;
 
   double _cohens_d, _cohens_ds, _p, _hedges_g, _df, _CL, _meanG1, _meanG2, _sdG1, _sdG2, _nG1, _nG2, _t, ciPlus, ciMinus, ci_mean;
@@ -79,7 +81,7 @@ class IndependentSamplesState extends State<IndependentSamples> with SharedTools
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        MyTitle('Independent samples'),
+        MyTitle(title),
         Row(
           children: <Widget>[
             MyEditable(

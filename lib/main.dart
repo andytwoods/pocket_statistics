@@ -7,6 +7,7 @@ import 'package:statistical_power/widgets/ds_from_t_for_independent_samples.dart
 import 'package:statistical_power/widgets/ds_from_t_for_independent_samples_with_group_ns.dart';
 import 'package:statistical_power/widgets/correlated_samples.dart';
 import 'package:statistical_power/widgets/dz_from_t_correlated_samples.dart';
+import 'package:share/share.dart';
 
 void main() => runApp(new MyApp());
 
@@ -79,13 +80,13 @@ class _MyHomePageState extends State<MyHomePage> {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: AppWideInfo(
-            copyTreeLinkup: (Function _linkup)=>_copyTree = _linkup,
+            copyTreeLinkup: (Function _linkup)=> _copyTree = _linkup,
             dp: DecimalPlaces.options.indexOf(dp.text),
             child: PartialNSquareAndWSquare()
         ),
       ),
       floatingActionButton: new FloatingActionButton(
-        onPressed: ()=>_copyTree==null?null:_copyTree(),
+        onPressed: ()=>_copyTree==null?null: Share.share(_copyTree()),
         tooltip: 'Copy table to clipboard',
         child: new Icon(Icons.content_copy),
       ), // This trailing comma makes auto-formatting nicer for build methods.

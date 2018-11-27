@@ -18,6 +18,8 @@ class PartialNSquareAndWSquareState extends State<PartialNSquareAndWSquare>
   final TextEditingController dfEffect = new TextEditingController(text: '');
   final TextEditingController dfError = new TextEditingController(text: '');
 
+  String title = 'Partial η² & ω² (latter only for One-Way ANOVA)';
+
   double _p, _npSquared, _wpSquared;
 
   void _onChanged() {
@@ -44,7 +46,7 @@ class PartialNSquareAndWSquareState extends State<PartialNSquareAndWSquare>
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        MyTitle('Partial η² & ω² (latter only for One-Way ANOVA)'),
+        MyTitle(title),
         Row(
           children: <Widget>[
             MyEditable(title: 'F', onChanged: _onChanged, controller: F),
