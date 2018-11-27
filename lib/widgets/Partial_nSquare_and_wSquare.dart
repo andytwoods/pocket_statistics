@@ -12,14 +12,13 @@ class PartialNSquareAndWSquare extends StatefulWidget {
   }
 }
 
-class PartialNSquareAndWSquareState
-    extends State<PartialNSquareAndWSquare> with SharedToolsMixin {
+class PartialNSquareAndWSquareState extends State<PartialNSquareAndWSquare>
+    with SharedToolsMixin {
   final TextEditingController F = new TextEditingController(text: '');
   final TextEditingController dfEffect = new TextEditingController(text: '');
   final TextEditingController dfError = new TextEditingController(text: '');
 
   double _p, _npSquared, _wpSquared;
-
 
   void _onChanged() {
     double _F = double.tryParse(F.text);
@@ -27,12 +26,10 @@ class PartialNSquareAndWSquareState
     double _dfError = double.tryParse(dfError.text);
 
     if (_F == null || _dfEffect == null || _dfError == null) {
-      _p  = _npSquared = _wpSquared = null;
-
+      _p = _npSquared = _wpSquared = null;
     } else {
-
-      _npSquared = _F*_dfEffect/(_F*_dfEffect+_dfError);
-      _wpSquared = (_F-1)/(_F+(_dfError+1)/(_dfEffect));
+      _npSquared = _F * _dfEffect / (_F * _dfEffect + _dfError);
+      _wpSquared = (_F - 1) / (_F + (_dfError + 1) / (_dfEffect));
 
       _p = 1 - FCentral.cdf(_F, _dfEffect, _dfError);
 
@@ -50,10 +47,11 @@ class PartialNSquareAndWSquareState
         MyTitle('Partial η² & ω² (latter only for One-Way ANOVA)'),
         Row(
           children: <Widget>[
+            MyEditable(title: 'F', onChanged: _onChanged, controller: F),
             MyEditable(
-                title: 'F', onChanged: _onChanged, controller: F),
-            MyEditable(
-                title: 'df effect', onChanged: _onChanged, controller: dfEffect),
+                title: 'df effect',
+                onChanged: _onChanged,
+                controller: dfEffect),
             MyEditable(
                 title: 'df error', onChanged: _onChanged, controller: dfError)
           ],
@@ -65,10 +63,5 @@ class PartialNSquareAndWSquareState
         ]),
       ]),
     );
-  }
-
-  String safeVal(double cohens_d) {
-    if (cohens_d == null) return '';
-    return cohens_d.toStringAsFixed(dp+1);
   }
 }

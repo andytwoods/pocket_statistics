@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:statistical_power/dists/normal.dart';
 import 'package:statistical_power/dists/student_t.dart';
 import 'package:statistical_power/widgets/base/base_container.dart';
+import 'package:statistical_power/widgets/base/sharted_tools_mixin.dart';
 import 'package:statistical_power/widgets/my_editable.dart';
 import 'package:statistical_power/widgets/my_result.dart';
 import 'package:statistical_power/widgets/title.dart';
@@ -15,7 +16,7 @@ class DsFromTCorrelatedSamples extends StatefulWidget {
   }
 }
 
-class DsFromTCorrelatedSamplesState extends State<DsFromTCorrelatedSamples> {
+class DsFromTCorrelatedSamplesState extends State<DsFromTCorrelatedSamples> with SharedToolsMixin {
   final TextEditingController totalN = new TextEditingController(text: '');
   final TextEditingController tValue = new TextEditingController(text: '');
 
@@ -66,8 +67,4 @@ class DsFromTCorrelatedSamplesState extends State<DsFromTCorrelatedSamples> {
     );
   }
 
-  String safeVal(double cohens_d) {
-    if (cohens_d == null) return '';
-    return cohens_d.toString();
-  }
 }

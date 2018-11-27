@@ -11,4 +11,9 @@ abstract class SharedToolsMixin <T extends StatefulWidget> extends State<T> {
     dp = appWideInfo.dp;
   }
 
+  String safeVal(double cohens_d) {
+    if (cohens_d == null) return '';
+    return cohens_d.toStringAsFixed(dp+1);
+  }
+
 }
