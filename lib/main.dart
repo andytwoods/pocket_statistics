@@ -51,6 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final TextEditingController dp = new TextEditingController(text: DecimalPlaces.defaultOption);
 
+  Function _copyTree;
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -77,14 +79,13 @@ class _MyHomePageState extends State<MyHomePage> {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: AppWideInfo(
+            copyTreeLinkup: (Function _linkup)=>_copyTree = _linkup,
             dp: DecimalPlaces.options.indexOf(dp.text),
             child: PartialNSquareAndWSquare()
         ),
       ),
       floatingActionButton: new FloatingActionButton(
-        onPressed: (){
-
-        },
+        onPressed: ()=>_copyTree==null?null:_copyTree(),
         tooltip: 'Copy table to clipboard',
         child: new Icon(Icons.content_copy),
       ), // This trailing comma makes auto-formatting nicer for build methods.
@@ -105,7 +106,8 @@ class DecimalPlaces extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return new DropdownButton<String>(
-      hint: Text('${val} dp'),
+      hint: Text('$val d.p.',
+      textAlign: TextAlign.right,),
       items: options.map((String value) {
         return new DropdownMenuItem<String>(
           value: value,

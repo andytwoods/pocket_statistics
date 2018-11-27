@@ -16,7 +16,8 @@ class MyResult extends ValueStatelessWidget{
   @override
   Widget build(BuildContext context) {
     return  MyContainer(
-      retrieveValue: ()=> value,
+      retrieveValue: retrieveValue,
+      retrieveMessage: retrieveMessage,
       color: Colors.yellowAccent,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -47,6 +48,11 @@ class MyResult extends ValueStatelessWidget{
         ],
       ),
     );
+  }
+
+  @override
+  String retrieveMessage() {
+    return this.title;
   }
 
   @override

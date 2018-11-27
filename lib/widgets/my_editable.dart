@@ -15,7 +15,8 @@ class MyEditable extends ValueStatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyContainer(
-        retrieveValue: ()=> controller.text,
+      retrieveMessage: retrieveMessage,
+        retrieveValue: retrieveValue,
         color: Colors.lightGreenAccent,
         child: Stack(
           children: <Widget>[
@@ -36,6 +37,11 @@ class MyEditable extends ValueStatelessWidget {
                 child: Icon(Icons.edit, size: 20.0, color: Colors.black26,))
           ],
         ));
+  }
+
+  @override
+  String retrieveMessage() {
+    return this.title;
   }
 
   @override

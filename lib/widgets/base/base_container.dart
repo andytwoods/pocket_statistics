@@ -7,8 +7,9 @@ class MyContainer extends StatelessWidget {
   final Widget child;
   final Color color;
   final Function retrieveValue;
+  final Function retrieveMessage;
 
-  MyContainer({this.child, this.color = Colors.white, this.retrieveValue});
+  MyContainer({this.child, this.color = Colors.white, this.retrieveValue, this.retrieveMessage});
 
   @override
   Widget build(BuildContext context) {
