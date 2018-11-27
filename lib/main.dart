@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:statistical_power/widgets/Partial_nSquare_and_wSquare.dart';
+import 'package:statistical_power/widgets/base/app_wide_info.dart';
 import 'package:statistical_power/widgets/correlated_samples.dart';
 import 'package:statistical_power/widgets/drawer.dart';
 import 'package:statistical_power/widgets/ds_from_t_for_independent_samples.dart';
@@ -26,23 +27,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class AppWideInfo extends InheritedWidget {
 
-  AppWideInfo({
-    Key key,
-    @required Widget child,
-    this.dp,
-  }): super(key: key, child: child);
-
-  final int dp;
-
-  static AppWideInfo of(BuildContext context) {
-    return context.inheritFromWidgetOfExactType(AppWideInfo);
-  }
-
-  @override
-  bool updateShouldNotify(AppWideInfo oldWidget) => dp != oldWidget.dp;
-}
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);

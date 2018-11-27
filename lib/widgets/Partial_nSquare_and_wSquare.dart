@@ -1,15 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/widgets.dart';
 import 'package:statistical_power/dists/f.dart';
-import 'package:statistical_power/dists/normal.dart';
-import 'package:statistical_power/dists/student_t.dart';
-import 'package:statistical_power/main.dart';
-import 'package:statistical_power/stats/tdist.dart';
-import 'package:statistical_power/widgets/base_container.dart';
 import 'package:statistical_power/widgets/my_editable.dart';
 import 'package:statistical_power/widgets/my_result.dart';
 import 'package:statistical_power/widgets/title.dart';
+import 'package:statistical_power/widgets/base/sharted_tools_mixin.dart';
 
 class PartialNSquareAndWSquare extends StatefulWidget {
   @override
@@ -19,12 +13,13 @@ class PartialNSquareAndWSquare extends StatefulWidget {
 }
 
 class PartialNSquareAndWSquareState
-    extends State<PartialNSquareAndWSquare> {
+    extends State<PartialNSquareAndWSquare> with SharedToolsMixin {
   final TextEditingController F = new TextEditingController(text: '');
   final TextEditingController dfEffect = new TextEditingController(text: '');
   final TextEditingController dfError = new TextEditingController(text: '');
 
   double _p, _npSquared, _wpSquared;
+
 
   void _onChanged() {
     double _F = double.tryParse(F.text);
@@ -73,9 +68,7 @@ class PartialNSquareAndWSquareState
   }
 
   String safeVal(double cohens_d) {
-    final AppWideInfo appWideInfo = AppWideInfo.of(context);
-    print(appWideInfo);
     if (cohens_d == null) return '';
-    return cohens_d.toString();
+    return cohens_d.toStringAsFixed(dp+1);
   }
 }
