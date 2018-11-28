@@ -56,7 +56,26 @@ class StatsDrawerState extends State<StatsDrawer> {
                     children: <Widget>[
                       Align(
                           alignment: Alignment.centerLeft,
-                          child: Text("POCKET STATISTICS")),
+                          child: Row(
+                            children: <Widget>[
+                              Text("POCKET STATISTICS"),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: InkWell(
+                                  onTap: (){
+                                    showAboutDialog(
+                                      context: context,
+                                        applicationLegalese: 'github.com/andytwoods/statistical_power_app\n\nGNU General Public License v3.0'
+
+                                    );
+
+
+                                  },
+                                  child: Icon(Icons.info, color: Colors.black45,),
+                                ),
+                              )
+                            ],
+                          )),
                       Container(
                         decoration: new BoxDecoration(
                             borderRadius: new BorderRadius.all(
@@ -80,14 +99,6 @@ class StatsDrawerState extends State<StatsDrawer> {
                 );
               index -= 1;
 
-              if (index == pagesList.length) return Container(
-                color: Colors.black26,
-                child: AboutListTile(
-                  icon: Icon(Icons.info),
-                  aboutBoxChildren: <Widget>[Text('github.com/andytwoods/statistical_power_app\n\nGNU General Public License v3.0')],
-
-                ),
-              );
 
               if(index< pagesList.length) {
                 MapEntry<String, Function> m = pagesList[index];
