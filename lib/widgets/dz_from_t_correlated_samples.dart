@@ -9,6 +9,8 @@ import 'package:statistical_power/widgets/my_editable.dart';
 import 'package:statistical_power/widgets/my_result.dart';
 import 'package:statistical_power/widgets/title.dart';
 
+String DsFromTCorrelatedSamplesTitle = 'dz from t for correlated samples';
+
 class DsFromTCorrelatedSamples extends StatefulWidget {
   @override
   DsFromTCorrelatedSamplesState createState() {
@@ -19,8 +21,6 @@ class DsFromTCorrelatedSamples extends StatefulWidget {
 class DsFromTCorrelatedSamplesState extends State<DsFromTCorrelatedSamples> with SharedToolsMixin {
   final TextEditingController totalN = new TextEditingController(text: '');
   final TextEditingController tValue = new TextEditingController(text: '');
-
-  String title = 'dz from t for correlated samples';
 
   double _cohens_d, _p, _CL;
 
@@ -48,7 +48,7 @@ class DsFromTCorrelatedSamplesState extends State<DsFromTCorrelatedSamples> with
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        MyTitle('dz from t for correlated samples'),
+        MyTitle(DsFromTCorrelatedSamplesTitle),
         Row(
           children: <Widget>[
             MyEditable(

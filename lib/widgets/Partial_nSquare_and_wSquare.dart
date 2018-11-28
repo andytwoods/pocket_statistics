@@ -5,6 +5,8 @@ import 'package:statistical_power/widgets/my_result.dart';
 import 'package:statistical_power/widgets/title.dart';
 import 'package:statistical_power/widgets/base/sharted_tools_mixin.dart';
 
+String PartialNSquareAndWSquareTitle = 'Partial η² & ω² (latter only for One-Way ANOVA)';
+
 class PartialNSquareAndWSquare extends StatefulWidget {
   @override
   PartialNSquareAndWSquareState createState() {
@@ -17,8 +19,6 @@ class PartialNSquareAndWSquareState extends State<PartialNSquareAndWSquare>
   final TextEditingController F = new TextEditingController(text: '');
   final TextEditingController dfEffect = new TextEditingController(text: '');
   final TextEditingController dfError = new TextEditingController(text: '');
-
-  String title = 'Partial η² & ω² (latter only for One-Way ANOVA)';
 
   double _p, _npSquared, _wpSquared;
 
@@ -46,7 +46,7 @@ class PartialNSquareAndWSquareState extends State<PartialNSquareAndWSquare>
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        MyTitle(title),
+        MyTitle(PartialNSquareAndWSquareTitle),
         Row(
           children: <Widget>[
             MyEditable(title: 'F', onChanged: _onChanged, controller: F),

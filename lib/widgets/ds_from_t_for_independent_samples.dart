@@ -9,6 +9,9 @@ import 'package:statistical_power/widgets/my_editable.dart';
 import 'package:statistical_power/widgets/my_result.dart';
 import 'package:statistical_power/widgets/title.dart';
 
+
+String DsFromTForIndependentSamplesTitle = 'dₛ from t independent samples';
+
 class DsFromTForIndependentSamples extends StatefulWidget {
   @override
   DsFromTForIndependentSamplesState createState() {
@@ -20,8 +23,6 @@ class DsFromTForIndependentSamplesState
     extends State<DsFromTForIndependentSamples> with SharedToolsMixin {
   final TextEditingController totalN = new TextEditingController(text: '');
   final TextEditingController tValue = new TextEditingController(text: '');
-
-  String title = 'dₛ from t independent samples';
 
   double _cohens_d, _p, _hedges_g, _df, _CL;
 
@@ -51,7 +52,7 @@ class DsFromTForIndependentSamplesState
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        MyTitle(title),
+        MyTitle(DsFromTForIndependentSamplesTitle),
         Row(
           children: <Widget>[
             MyEditable(

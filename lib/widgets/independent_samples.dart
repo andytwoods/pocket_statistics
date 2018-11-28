@@ -10,6 +10,8 @@ import 'package:statistical_power/widgets/my_editable.dart';
 import 'package:statistical_power/widgets/my_result.dart';
 import 'package:statistical_power/widgets/title.dart';
 
+String IndependentSamplesTitle = 'Independent samples';
+
 class IndependentSamples extends StatefulWidget {
   @override
   IndependentSamplesState createState() {
@@ -28,8 +30,6 @@ class IndependentSamplesState extends State<IndependentSamples> with SharedTools
   final TextEditingController meanG2 = new TextEditingController(text: '');
   final TextEditingController sdG2 = new TextEditingController(text: '');
   final TextEditingController nG2 = new TextEditingController(text: '');
-
-  String title = 'Independent samples';
 
   String confidence_intervals;
 
@@ -81,7 +81,7 @@ class IndependentSamplesState extends State<IndependentSamples> with SharedTools
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        MyTitle(title),
+        MyTitle(IndependentSamplesTitle),
         Row(
           children: <Widget>[
             MyEditable(

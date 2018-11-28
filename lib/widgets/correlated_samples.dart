@@ -3,11 +3,12 @@ import 'dart:math';
 import 'package:flutter/widgets.dart';
 import 'package:statistical_power/dists/normal.dart';
 import 'package:statistical_power/dists/student_t.dart';
-import 'package:statistical_power/widgets/base/base_container.dart';
 import 'package:statistical_power/widgets/base/sharted_tools_mixin.dart';
 import 'package:statistical_power/widgets/my_editable.dart';
 import 'package:statistical_power/widgets/my_result.dart';
 import 'package:statistical_power/widgets/title.dart';
+
+String CorrelatedSamplesTitle = 'Correlated (or Dependent) Samples';
 
 class CorrelatedSamples extends StatefulWidget {
   @override
@@ -27,9 +28,6 @@ class CorrelatedSamplesState extends State<CorrelatedSamples> with SharedToolsMi
 
   final TextEditingController meanG2 = new TextEditingController(text: '');
   final TextEditingController sdG2 = new TextEditingController(text: '');
-
-  String title = 'Correlated (or Dependent) Samples';
-
 
   String confidence_intervals;
 
@@ -92,7 +90,7 @@ class CorrelatedSamplesState extends State<CorrelatedSamples> with SharedToolsMi
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        MyTitle(title),
+        MyTitle(CorrelatedSamplesTitle),
         Row(
           children: <Widget>[
             MyEditable(

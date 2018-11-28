@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 import 'package:statistical_power/widgets/Partial_nSquare_and_wSquare.dart';
 import 'package:statistical_power/widgets/base/app_wide_info.dart';
-import 'package:statistical_power/widgets/correlated_samples.dart';
+import 'package:statistical_power/widgets/decimal_places.dart';
 import 'package:statistical_power/widgets/drawer.dart';
-import 'package:statistical_power/widgets/ds_from_t_for_independent_samples.dart';
-import 'package:statistical_power/widgets/ds_from_t_for_independent_samples_with_group_ns.dart';
-import 'package:statistical_power/widgets/correlated_samples.dart';
-import 'package:statistical_power/widgets/dz_from_t_correlated_samples.dart';
-import 'package:share/share.dart';
 
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -33,15 +29,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -54,18 +41,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Function _copyTree;
 
+  Widget page = PartialNSquareAndWSquare();
+
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+
     return new Scaffold(
       appBar: new AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
+
         title: new Text(widget.title),
         actions: <Widget>[
           DecimalPlaces(dp.text, (String val){
@@ -75,51 +58,21 @@ class _MyHomePageState extends State<MyHomePage> {
           })
         ],
       ),
-      drawer: StatsDrawer(),
+      drawer: StatsDrawer(selectedCallback:(Widget w) => setState(() {page = w;})),
       body: new Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+
         child: AppWideInfo(
             copyTreeLinkup: (Function _linkup)=> _copyTree = _linkup,
             dp: DecimalPlaces.options.indexOf(dp.text),
-            child: PartialNSquareAndWSquare()
+            child: page!=null?page: Container()
         ),
       ),
       floatingActionButton: new FloatingActionButton(
         onPressed: ()=>_copyTree==null?null: Share.share(_copyTree()),
         tooltip: 'Copy table to clipboard',
-        child: new Icon(Icons.content_copy),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        child: Icon(Icons.content_copy),
+      ),
     );
   }
 }
 
-class DecimalPlaces extends StatelessWidget{
-
-  static List<String> options = ['1', '2', '3', '4', '5', 'physics', 'all'];
-  static String defaultOption = options.last;
-
-  String val;
-  Function onChanged;
-
-  DecimalPlaces(this.val, this.onChanged);
-
-  @override
-  Widget build(BuildContext context) {
-    return new DropdownButton<String>(
-      hint: Text('$val d.p.',
-      textAlign: TextAlign.right,),
-      items: options.map((String value) {
-        return new DropdownMenuItem<String>(
-          value: value,
-          child: new Text(value),
-        );
-      }).toList(),
-      onChanged: (val) {
-        onChanged(val);
-      },
-    );
-  }
-
-
-}

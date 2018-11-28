@@ -3,13 +3,13 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:statistical_power/widgets/base/app_wide_info.dart';
 import 'package:statistical_power/widgets/base/base_container.dart';
+import 'package:statistical_power/widgets/title.dart';
 
 abstract class SharedToolsMixin<T extends StatefulWidget> extends State<T> {
   int dp;
-  String title;
 
   String copyTree() {
-    List<String> output = [title];
+    List<String> output = [];
 
     //needs to be defined at top as Fs refer to each other
     //(and both can't be above the other).
@@ -20,6 +20,13 @@ abstract class SharedToolsMixin<T extends StatefulWidget> extends State<T> {
       if (element.widget is MyContainer) {
         MyContainer c = element.widget as MyContainer;
         output.add(c.retrieveMessage() + ' = ' + c.retrieveValue());
+      }
+      if(element.widget is MyTitle){
+        var title = (element.widget as MyTitle).title;
+        //just in case we have more than one title in a page
+        if(output.length == 0 || (output.length>0 && output[0]!=title)) {
+          output.insert(0, (element.widget as MyTitle).title);
+        }
       }
     };
 
