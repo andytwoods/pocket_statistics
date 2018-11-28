@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:statistical_power/widgets/base/base_container.dart';
 
 class MyEditable extends ValueStatelessWidget {
-
   @required
   final String title;
   @required
@@ -15,26 +14,33 @@ class MyEditable extends ValueStatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyContainer(
-      retrieveMessage: retrieveMessage,
+        retrieveMessage: retrieveMessage,
         retrieveValue: retrieveValue,
         color: Colors.lightGreenAccent,
         child: Stack(
           children: <Widget>[
             TextField(
-              textAlign: TextAlign.center,
-            controller: controller,
-            onChanged: (_)=> onChanged(),
-            keyboardType: TextInputType.numberWithOptions(
-                decimal: true, signed: true),
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                labelText: title,
-                contentPadding: null,
+                textAlign: TextAlign.center,
+                controller: controller,
+                onChanged: (_) => onChanged(),
+                keyboardType: TextInputType.numberWithOptions(
+                    decimal: true, signed: true),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  labelText: title,
+                  contentPadding: null,
+                )),
+            AnimatedOpacity(
+              opacity: controller.text.length != 0 ? 0.0 : 1.0,
+              duration: Duration(milliseconds: 200),
+              child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Icon(
+                    Icons.edit,
+                    size: 30.0,
+                    color: Colors.black26,
+                  )),
             )
-    ),
-            Align(
-                alignment: Alignment.bottomRight,
-                child: Icon(Icons.edit, size: 20.0, color: Colors.black26,))
           ],
         ));
   }
@@ -49,4 +55,3 @@ class MyEditable extends ValueStatelessWidget {
     return controller.text;
   }
 }
-

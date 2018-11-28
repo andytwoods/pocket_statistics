@@ -10,14 +10,14 @@ import 'package:statistical_power/widgets/independent_samples.dart';
 Map<String, Function> pages = {
   CorrelatedSamplesTitle: () => CorrelatedSamples(),
   DsFromTForIndependentSamplesTitle: () => DsFromTForIndependentSamples(),
-  DsFromTForIndependentSamplesWithNsTitle: () => DsFromTForIndependentSamplesWithNs(),
+  DsFromTForIndependentSamplesWithNsTitle: () =>
+      DsFromTForIndependentSamplesWithNs(),
   DsFromTCorrelatedSamplesTitle: () => DsFromTCorrelatedSamples(),
   IndependentSamplesTitle: () => IndependentSamples(),
   PartialNSquareAndWSquareTitle: () => PartialNSquareAndWSquare()
 };
 
 class StatsDrawer extends StatelessWidget {
-
   @required
   Function selectedCallback;
 
@@ -29,13 +29,20 @@ class StatsDrawer extends StatelessWidget {
 
     return new Drawer(
         child: new ListView.builder(
-            itemCount: pages.length,
+            itemCount: pagesList.length + 2 , //for license info
             itemBuilder: (BuildContext context, int index) {
               if (index == 0)
                 return DrawerHeader(
                   child: new Text("QUICK STATS"),
                   decoration: new BoxDecoration(color: Colors.lightGreenAccent),
                 );
+              index -= 1;
+
+              if (index == pagesList.length) return AboutListTile(
+                icon: Icon(Icons.info),
+                aboutBoxChildren: <Widget>[Text('scooby doo')],
+
+              );
 
               MapEntry<String, Function> m = pagesList[index];
               return new ListTile(
