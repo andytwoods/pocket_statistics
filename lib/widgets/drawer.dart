@@ -17,41 +17,90 @@ Map<String, Function> pages = {
   PartialNSquareAndWSquareTitle: () => PartialNSquareAndWSquare()
 };
 
-class StatsDrawer extends StatelessWidget {
+class StatsDrawer extends StatefulWidget {
   @required
   Function selectedCallback;
 
   StatsDrawer({this.selectedCallback});
 
   @override
+  StatsDrawerState createState() {
+    return new StatsDrawerState();
+  }
+}
+
+class StatsDrawerState extends State<StatsDrawer> {
+
+  TextEditingController searchController = TextEditingController();
+
+  @override
   Widget build(BuildContext ctxt) {
     List<MapEntry<String, Function>> pagesList = pages.entries.toList();
 
+    String searchFor = searchController.text.toLowerCase();
+    if(searchFor.length>0){
+      pagesList = pagesList.where((MapEntry<String, Function> pe){
+        return pe.key.toLowerCase().contains(searchFor);
+      }).toList();
+    }
+
     return new Drawer(
         child: new ListView.builder(
-            itemCount: pagesList.length + 2 , //for license info
+
             itemBuilder: (BuildContext context, int index) {
               if (index == 0)
                 return DrawerHeader(
-                  child: new Text("QUICK STATS"),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text("POCKET STATISTICS")),
+                      Container(
+                        decoration: new BoxDecoration(
+                            borderRadius: new BorderRadius.all(
+                                  Radius.circular(10.0))
+                        ),
+                        child: TextField(
+                          controller: searchController,
+                          onChanged: (_)=> setState(() {}), //pokes for a regeneration
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.all(1.0),
+                            border: InputBorder.none,
+                            icon: Icon(Icons.search),
+                            labelText: 'search...',
+                          ),
+
+                        ),
+                      )
+                    ],
+                  ),
                   decoration: new BoxDecoration(color: Colors.lightGreenAccent),
                 );
               index -= 1;
 
-              if (index == pagesList.length) return AboutListTile(
-                icon: Icon(Icons.info),
-                aboutBoxChildren: <Widget>[Text('scooby doo')],
+              if (index == pagesList.length) return Container(
+                color: Colors.black26,
+                child: AboutListTile(
+                  icon: Icon(Icons.info),
+                  aboutBoxChildren: <Widget>[Text('github.com/andytwoods/statistical_power_app\n\nGNU General Public License v3.0')],
 
+                ),
               );
 
-              MapEntry<String, Function> m = pagesList[index];
-              return new ListTile(
-                title: new Text(m.key),
-                onTap: () {
-                  selectedCallback(m.value());
-                  Navigator.of(context).pop();
-                },
-              );
+              if(index< pagesList.length) {
+                MapEntry<String, Function> m = pagesList[index];
+                return new ListTile(
+                  title: new Text(m.key),
+                  onTap: () {
+                    widget.selectedCallback(m.value());
+                    Navigator.of(context).pop();
+                  },
+                );
+              }
+
+              return null;
             }));
   }
 }
