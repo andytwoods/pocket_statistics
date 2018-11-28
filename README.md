@@ -8,10 +8,10 @@ It is my hope that we build from this and create something truly useful.
 
 Contributions most welcome.
 
-#Why?
+### Why?
 Why not?
 
-# Technology behing the app
+## Technology behing the app
 The app is written in [Flutter](https://flutter.io), a wonderful new opensource package from Google for creating Android and IOS apps (and soon, hopefully, [desktop apps](https://github.com/google/flutter-desktop-embedding)). Flutter takes care of most of the hard stuff such as:
 * pretty elements on screen (text, images, inputs) 
 * screen positions (in rows, columns, lists etc).
@@ -20,13 +20,13 @@ The app is written in [Flutter](https://flutter.io), a wonderful new opensource 
 
 All coding in Flutter is done in [Dart](https://www.dartlang.org/) which is mostly straightforward. Flutter heavily relies on Object Orientated Programming with an app resembling a large tree structure with many many children and parent **widgets** (a key term -- most things are widgets in flutter) specifying both how the app will look and behave.  
 
-# How to Contribute
+## How to Contribute
 There are many ways to help. Don't be daunted by the technology! 
 * Keen coder? What about creating a new tool-page (see section below). Or porting [JStat](https://github.com/jstat/jstat) to Dart (which would make tool-page creation a lot easier). 
 * If statistics is your thing, you could help construct formula, or proof the equations used.
 * Science communicator? Could you make the writing more accessible for others?
 
-#Installation
+### Installation
 
 Install Flutter by following the [official guide](https://flutter.io/docs/get-started/install). 
 
@@ -38,7 +38,7 @@ If you decided to use Intellij IDEA there are several plugins you need to instal
 
 I develop using a virtual Android device. You can set one up in Intellij via Tools -> Android -> AVD Manager (if that option is disabled, here is a [solution](https://stackoverflow.com/questions/53497851/avd-manager-in-intellij-is-disabled/53497862#53497862)). I created a virtual Pixel 2. It is very easy though to also develop with actual androids or ios devices (in most cases, you just need to put your device in 'developer mode'). You cannot develop on a PC with an IOS device, however (although perhaps this could be done using Virtual Machines via e.g. VirtualBox).
 
-###Creating a new page
+### Creating a new page
 
 * Duplicate an existing simple tool-page such as [lib/widgets/dz_from_t_correlated_samples.dart](https://github.com/andytwoods/statistical_power_app/blob/master/lib/widgets/dz_from_t_correlated_samples.dart). 
 
