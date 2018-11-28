@@ -63,7 +63,7 @@ class StatsDrawerState extends State<StatsDrawer> {
                             showAboutDialog(
                                 context: context,
                                 applicationLegalese:
-                                    'github.com/andytwoods/statistical_power_app\n\nGNU General Public License v3.0');
+                                    'github.com/andytwoods/pocket_statistics\n\nGNU General Public License v3.0');
                           },
                           child: Icon(
                             Icons.info,

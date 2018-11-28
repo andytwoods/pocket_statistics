@@ -1,15 +1,15 @@
-# Pocket Statistics App
+# Pocket Statistics
 
 An opensource proof-in-concept statistics app for Android and iPhone.
 
-The app currently consists of a small number of tools for calculating effect sizes based on Daniel Lakens 'Calculating Effect Sizes' [toolsheet](https://osf.io/vbdah/).
+The app consists currently of a small number of tools for calculating effect sizes based on Daniel Lakens 'Calculating Effect Sizes' [toolsheet](https://osf.io/vbdah/).
 
 It is my hope that we build from this and create something truly useful. 
 
 Contributions most welcome.
 
 ### Why?
-Why not?
+Why not.
 
 ## Technology behing the app
 The app is written in [Flutter](https://flutter.io), a wonderful new opensource package from Google for creating Android and IOS apps (and soon, hopefully, [desktop apps](https://github.com/google/flutter-desktop-embedding)). Flutter takes care of most of the hard stuff such as:
@@ -18,7 +18,7 @@ The app is written in [Flutter](https://flutter.io), a wonderful new opensource 
 * transitions between pages
 * orientation   
 
-All coding in Flutter is done in [Dart](https://www.dartlang.org/) which is mostly straightforward. Flutter heavily relies on Object Orientated Programming with an app resembling a large tree structure with many many children and parent **widgets** (a key term -- most things are widgets in flutter) specifying both how the app will look and behave.  
+All coding in Flutter is done in [Dart](https://www.dartlang.org/) which is mostly straightforward (numbers must have atleast one decimal place though, e.g. 10.0). Flutter relies on Object Orientated Programming. Apps have a large tree structure of many many children and parent **widgets** (a key term -- most things are widgets in flutter) specifying both how the app will look and behave.  
 
 ## How to Contribute
 There are many ways to help. Don't be daunted by the technology! 
@@ -34,13 +34,13 @@ You will need to decide on what IDE (code editor) you want to use. The guide ass
 
 If you decided to use Intellij IDEA there are several plugins you need to install (follow this [guide](https://stackoverflow.com/questions/50485795/how-to-install-flutter-and-dart-in-android-studio-and-inttellij)). If you follow the official guide's next step by [making your first app](https://flutter.io/docs/get-started/test-drive), these will be setup for you.
  
- You clone this repo within the Intellij via VCS -> Checkout From Version Control (select git and paste in this url https://github.com/andytwoods/statistical_power_app).
+ You clone this repo within the Intellij via VCS -> Checkout From Version Control (select git and paste in this url https://github.com/andytwoods/pocket_statistics).
 
 I develop using a virtual Android device. You can set one up in Intellij via Tools -> Android -> AVD Manager (if that option is disabled, here is a [solution](https://stackoverflow.com/questions/53497851/avd-manager-in-intellij-is-disabled/53497862#53497862)). I created a virtual Pixel 2. It is very easy though to also develop with actual androids or ios devices (in most cases, you just need to put your device in 'developer mode'). You cannot develop on a PC with an IOS device, however (although perhaps this could be done using Virtual Machines via e.g. VirtualBox).
 
 ### Creating a new page
 
-* Duplicate an existing simple tool-page such as [lib/widgets/dz_from_t_correlated_samples.dart](https://github.com/andytwoods/statistical_power_app/blob/master/lib/widgets/dz_from_t_correlated_samples.dart). 
+* Duplicate an existing simple tool-page such as [lib/widgets/dz_from_t_correlated_samples.dart](https://github.com/andytwoods/pocket_statistics/blob/master/lib/widgets/dz_from_t_correlated_samples.dart). 
 
 * Specify the layout of the page within the **build** method. Note how Rows and Columns are used. You can specify an empty 'cell' via Blank(). 
 
@@ -50,7 +50,7 @@ I develop using a virtual Android device. You can set one up in Intellij via Too
 
 * Dart numbers (double) **must** have at least 1 decimal place specified. E.g. 1.0. 
 
-* Remember to add your created page to [lib/widgets/drawer.dart](https://github.com/andytwoods/statistical_power_app/blob/master/lib/widgets/drawer.dart).
+* Remember to add your created page to [lib/widgets/drawer.dart](https://github.com/andytwoods/pocket_statistics/blob/master/lib/widgets/drawer.dart).
 
 ```
 String DsFromTCorrelatedSamplesTitle = 'dz from t for correlated samples';
