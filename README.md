@@ -1,8 +1,8 @@
 # Pocket Statistics
 
-An opensource proof-in-concept statistics app for Android and iPhone.
+An opensource proof-of-concept statistics app for Android and iPhone.
 
-The app consists currently of a small number of tools for calculating effect sizes based on Daniel Lakens 'Calculating Effect Sizes' [toolsheet](https://osf.io/vbdah/).
+At the moment, the app only consists of a small number of tools for calculating effect sizes based on Daniel Lakens 'Calculating Effect Sizes' [toolsheet](https://osf.io/vbdah/). It is 'fully-wired' though, in that it is easy to add new stats-tools without really having to worry about 'app development'. 
 
 It is my hope that we build from this and create something truly useful. 
 
