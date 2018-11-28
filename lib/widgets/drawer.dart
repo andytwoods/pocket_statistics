@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:statistical_power/widgets/Partial_nSquare_and_wSquare.dart';
-import 'package:statistical_power/widgets/correlated_samples.dart';
-import 'package:statistical_power/widgets/ds_from_t_for_independent_samples.dart';
-import 'package:statistical_power/widgets/ds_from_t_for_independent_samples_with_group_ns.dart';
-import 'package:statistical_power/widgets/dz_from_t_correlated_samples.dart';
-import 'package:statistical_power/widgets/independent_samples.dart';
+import 'package:pocket_statistics/widgets/Partial_nSquare_and_wSquare.dart';
+import 'package:pocket_statistics/widgets/correlated_samples.dart';
+import 'package:pocket_statistics/widgets/ds_from_t_for_independent_samples.dart';
+import 'package:pocket_statistics/widgets/ds_from_t_for_independent_samples_with_group_ns.dart';
+import 'package:pocket_statistics/widgets/dz_from_t_correlated_samples.dart';
+import 'package:pocket_statistics/widgets/independent_samples.dart';
 
 Map<String, Function> pages = {
   CorrelatedSamplesTitle: () => CorrelatedSamples(),

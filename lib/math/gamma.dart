@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:statistical_power/math/math.dart';
+import 'package:pocket_statistics/math/math.dart';
 
 double gamma(double x) {
   const double _euler =

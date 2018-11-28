@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:statistical_power/dists/dists.dart';
+import 'package:pocket_statistics/dists/dists.dart';
 
 /// The Geometric Distribution is a discrete probability distribution
 /// with parameters p > 0 >= 1. Note: this is models the number of failures

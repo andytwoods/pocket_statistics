@@ -2,7 +2,7 @@
 
 import 'dart:math';
 
-import 'package:statistical_power/dists/dists.dart';
+import 'package:pocket_statistics/dists/dists.dart';
 
 /// The Uniform Distribution is a continuous probability distribution
 /// with parameters Min and Max, with Max < Min.

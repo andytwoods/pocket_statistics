@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:statistical_power/widgets/base/base_container.dart';
+import 'package:pocket_statistics/widgets/base/base_container.dart';
 
 class MyEditable extends ValueStatelessWidget {
   @required

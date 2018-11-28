@@ -2,7 +2,7 @@
 
 import 'dart:math';
 
-import 'package:statistical_power/math/math.dart';
+import 'package:pocket_statistics/math/math.dart';
 
 const double _erx = 8.45062911510467529297e-01; // 0x3FEB0AC160000000
 

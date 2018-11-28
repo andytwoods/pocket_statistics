@@ -1,9 +1,9 @@
 import 'dart:math';
 
-import 'package:statistical_power/dists/beta.dart';
-import 'package:statistical_power/dists/dists.dart';
-import 'package:statistical_power/math/beta.dart';
-import 'package:statistical_power/math/gamma.dart';
+import 'package:pocket_statistics/dists/beta.dart';
+import 'package:pocket_statistics/dists/dists.dart';
+import 'package:pocket_statistics/math/beta.dart';
+import 'package:pocket_statistics/math/gamma.dart';
 
 /// TODO
 class StudentT extends ContinuousRV {

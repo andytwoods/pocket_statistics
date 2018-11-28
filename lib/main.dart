@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
-import 'package:statistical_power/widgets/Partial_nSquare_and_wSquare.dart';
-import 'package:statistical_power/widgets/base/app_wide_info.dart';
-import 'package:statistical_power/widgets/decimal_places.dart';
-import 'package:statistical_power/widgets/drawer.dart';
+import 'package:pocket_statistics/widgets/Partial_nSquare_and_wSquare.dart';
+import 'package:pocket_statistics/widgets/base/app_wide_info.dart';
+import 'package:pocket_statistics/widgets/decimal_places.dart';
+import 'package:pocket_statistics/widgets/drawer.dart';
 
 void main() => runApp(new MyApp());
 

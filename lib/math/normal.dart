@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:statistical_power/math/polynomial.dart';
+import 'package:pocket_statistics/math/polynomial.dart';
 
 /// Computes the inverse of Normal distribution function
 ///

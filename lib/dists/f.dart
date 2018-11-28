@@ -1,9 +1,9 @@
 import 'dart:math';
 
-import 'package:statistical_power/dists/beta.dart';
-import 'package:statistical_power/dists/dists.dart';
-import 'package:statistical_power/math/erf.dart';
-import 'package:statistical_power/math/normal.dart';
+import 'package:pocket_statistics/dists/beta.dart';
+import 'package:pocket_statistics/dists/dists.dart';
+import 'package:pocket_statistics/math/erf.dart';
+import 'package:pocket_statistics/math/normal.dart';
 
 // from https://github.com/jstat/jstat/blob/master/dist/jstat.js
 class FCentral {

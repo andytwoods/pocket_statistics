@@ -1,14 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/widgets.dart';
-import 'package:statistical_power/dists/normal.dart';
-import 'package:statistical_power/dists/student_t.dart';
-import 'package:statistical_power/stats/tdist.dart';
-import 'package:statistical_power/widgets/base/base_container.dart';
-import 'package:statistical_power/widgets/base/sharted_tools_mixin.dart';
-import 'package:statistical_power/widgets/my_editable.dart';
-import 'package:statistical_power/widgets/my_result.dart';
-import 'package:statistical_power/widgets/title.dart';
+import 'package:pocket_statistics/dists/normal.dart';
+import 'package:pocket_statistics/dists/student_t.dart';
+import 'package:pocket_statistics/stats/tdist.dart';
+import 'package:pocket_statistics/widgets/base/base_container.dart';
+import 'package:pocket_statistics/widgets/base/sharted_tools_mixin.dart';
+import 'package:pocket_statistics/widgets/my_editable.dart';
+import 'package:pocket_statistics/widgets/my_result.dart';
+import 'package:pocket_statistics/widgets/title.dart';
 
 String DsFromTForIndependentSamplesWithNsTitle = 'dₛ from t independent samples with known values for n';
 

@@ -1,8 +1,8 @@
 
 import 'dart:math';
 
-import 'package:statistical_power/dists/dists.dart';
-import 'package:statistical_power/math/binomial.dart';
+import 'package:pocket_statistics/dists/dists.dart';
+import 'package:pocket_statistics/math/binomial.dart';
 
 /// The Binomial Distribution is a discrete probability distribution
 /// with parameters n > 0, 1 > p > 0.

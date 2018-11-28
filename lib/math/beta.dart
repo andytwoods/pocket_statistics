@@ -2,8 +2,8 @@
 
 import 'dart:math';
 
-import 'package:statistical_power/math/gamma.dart';
-import 'package:statistical_power/math/lgamma.dart';
+import 'package:pocket_statistics/math/gamma.dart';
+import 'package:pocket_statistics/math/lgamma.dart';
 
 /// The  regularized lower incomplete gamma function.
 /// Code kanged from SAMTools:

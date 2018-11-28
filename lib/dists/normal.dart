@@ -1,8 +1,8 @@
 import 'dart:math';
 
-import 'package:statistical_power/dists/dists.dart';
-import 'package:statistical_power/math/erf.dart';
-import 'package:statistical_power/math/normal.dart';
+import 'package:pocket_statistics/dists/dists.dart';
+import 'package:pocket_statistics/math/erf.dart';
+import 'package:pocket_statistics/math/normal.dart';
 
 /// The Normal(or Gaussian) Distribution is a continuous probability distribution
 /// with parameters μ, σ >= 0.

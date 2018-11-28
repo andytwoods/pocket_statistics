@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
-import 'package:statistical_power/dists/f.dart';
-import 'package:statistical_power/widgets/my_editable.dart';
-import 'package:statistical_power/widgets/my_result.dart';
-import 'package:statistical_power/widgets/title.dart';
-import 'package:statistical_power/widgets/base/sharted_tools_mixin.dart';
+import 'package:pocket_statistics/dists/f.dart';
+import 'package:pocket_statistics/widgets/my_editable.dart';
+import 'package:pocket_statistics/widgets/my_result.dart';
+import 'package:pocket_statistics/widgets/title.dart';
+import 'package:pocket_statistics/widgets/base/sharted_tools_mixin.dart';
 
 String PartialNSquareAndWSquareTitle = 'Partial η² & ω² (latter only for One-Way ANOVA)';
 

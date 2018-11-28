@@ -1,9 +1,9 @@
 
 import 'dart:math';
 
-import 'package:statistical_power/dists/dists.dart';
-import 'package:statistical_power/math/beta.dart';
-import 'package:statistical_power/math/lgamma.dart';
+import 'package:pocket_statistics/dists/dists.dart';
+import 'package:pocket_statistics/math/beta.dart';
+import 'package:pocket_statistics/math/lgamma.dart';
 
 /// The ChiSquared Distribution is a continuous probability distribution
 /// with parameters df > 0.

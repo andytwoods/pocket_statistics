@@ -21,7 +21,7 @@ The app is written in [Flutter](https://flutter.io), a wonderful new opensource 
 All coding in Flutter is done in [Dart](https://www.dartlang.org/) which is mostly straightforward (numbers must have atleast one decimal place though, e.g. 10.0). Flutter relies on Object Orientated Programming. Apps have a large tree structure of many many children and parent **widgets** (a key term -- most things are widgets in flutter) specifying both how the app will look and behave.  
 
 ## How to Contribute
-There are many ways to help. Don't be daunted by the technology! 
+There are many ways to help. Please don't be daunted by the technology! 
 * Keen coder? What about creating a new tool-page (see section below). Or porting [JStat](https://github.com/jstat/jstat) to Dart (which would make tool-page creation a lot easier). 
 * If statistics is your thing, you could help construct formula, or proof the equations used.
 * Science communicator? Could you make the writing more accessible for others?

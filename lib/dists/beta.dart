@@ -1,9 +1,9 @@
 
 import 'dart:math';
 
-import 'package:statistical_power/dists/dists.dart';
-import 'package:statistical_power/dists/gamma.dart';
-import 'package:statistical_power/math/beta.dart' as mybeta;
+import 'package:pocket_statistics/dists/dists.dart';
+import 'package:pocket_statistics/dists/gamma.dart';
+import 'package:pocket_statistics/math/beta.dart' as mybeta;
 
 /// The Beta  Distribution is a continuous probability distribution
 /// with parameters α > 0, β >= 0.
