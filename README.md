@@ -8,10 +8,10 @@ It is my hope that we build from this and create something truly useful.
 
 Contributions most welcome.
 
-###Why?
+#Why?
 Why not?
 
-## Technology behing the app
+# Technology behing the app
 The app is written in [Flutter](https://flutter.io), a wonderful new opensource package from Google for creating Android and IOS apps (and soon, hopefully, [desktop apps](https://github.com/google/flutter-desktop-embedding)). Flutter takes care of most of the hard stuff such as:
 * pretty elements on screen (text, images, inputs) 
 * screen positions (in rows, columns, lists etc).
@@ -20,13 +20,13 @@ The app is written in [Flutter](https://flutter.io), a wonderful new opensource 
 
 All coding in Flutter is done in [Dart](https://www.dartlang.org/) which is mostly straightforward. Flutter heavily relies on Object Orientated Programming with an app resembling a large tree structure with many many children and parent **widgets** (a key term -- most things are widgets in flutter) specifying both how the app will look and behave.  
 
-## How to Contribute
+# How to Contribute
 There are many ways to help. Don't be daunted by the technology! 
 * Keen coder? What about creating a new tool-page (see section below). Or porting [JStat](https://github.com/jstat/jstat) to Dart (which would make tool-page creation a lot easier). 
 * If statistics is your thing, you could help construct formula, or proof the equations used.
 * Science communicator? Could you make the writing more accessible for others?
 
-###Installation
+#Installation
 
 Install Flutter by following the [official guide](https://flutter.io/docs/get-started/install). 
 
