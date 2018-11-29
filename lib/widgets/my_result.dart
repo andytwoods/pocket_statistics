@@ -32,9 +32,6 @@ class MyResult extends ValueStatelessWidget{
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
               child: Center(
                 child: Text(
                   value,

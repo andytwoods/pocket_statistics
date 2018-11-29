@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:pocket_statistics/widgets/Grim.dart';
 import 'package:pocket_statistics/widgets/Partial_nSquare_and_wSquare.dart';
 import 'package:pocket_statistics/widgets/correlated_samples.dart';
 import 'package:pocket_statistics/widgets/ds_from_t_for_independent_samples.dart';
@@ -14,7 +15,8 @@ Map<String, Function> pages = {
       DsFromTForIndependentSamplesWithNs(),
   DsFromTCorrelatedSamplesTitle: () => DsFromTCorrelatedSamples(),
   IndependentSamplesTitle: () => IndependentSamples(),
-  PartialNSquareAndWSquareTitle: () => PartialNSquareAndWSquare()
+  PartialNSquareAndWSquareTitle: () => PartialNSquareAndWSquare(),
+  GrimTitle: () => Grim(),
 };
 
 class StatsDrawer extends StatefulWidget {

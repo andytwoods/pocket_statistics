@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pocket_statistics/widgets/Grim.dart';
 import 'package:share/share.dart';
 import 'package:pocket_statistics/widgets/Partial_nSquare_and_wSquare.dart';
 import 'package:pocket_statistics/widgets/base/app_wide_info.dart';
@@ -16,10 +17,8 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
         //textTheme: TextTheme(),
         primarySwatch: Colors.blue,
-
       ),
       home: new MyHomePage(title: 'Pocket Statistics'),
-
     );
   }
 }
@@ -28,9 +27,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
   final String title;
-
   @override
   _MyHomePageState createState() => new _MyHomePageState();
 }
@@ -41,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Function _copyTree;
 
-  Widget page = PartialNSquareAndWSquare();
+  Widget page = Grim();
 
   @override
   Widget build(BuildContext context) {
