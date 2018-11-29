@@ -9,22 +9,23 @@ class MyEditableAndResult extends StatefulWidget {
   final String editableTitle, resultTitle;
   @required
   final Function onChanged;
-  @required
-  final TextEditingController value = new TextEditingController(text: '');
-  @required
-  final TextEditingController input = new TextEditingController(text: '');
+
   final Widget more;
 
   MyEditableAndResult({this.editableTitle, this.resultTitle, this.onChanged, this.more});
 
+  MyEditableAndResultState myState;
+
   @override
   MyEditableAndResultState createState() {
-    return new MyEditableAndResultState();
+    myState = MyEditableAndResultState();
+    return myState;
   }
 }
 
 class MyEditableAndResultState extends State<MyEditableAndResult> {
 
+  final TextEditingController value = new TextEditingController(text: '');
   final TextEditingController input = new TextEditingController(text: '');
 
   @override
@@ -32,7 +33,7 @@ class MyEditableAndResultState extends State<MyEditableAndResult> {
     return Row(
       children: [
         MyEditable(onChanged: widget.onChanged, title: widget.editableTitle, controller: input,),
-        MyResult(title: widget.resultTitle, value: widget.value.text,),
+        MyResult(title: widget.resultTitle, value: value.text,),
         widget.more==null?Container():widget.more
       ]
 

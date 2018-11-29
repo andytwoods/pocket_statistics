@@ -22,7 +22,8 @@ class GrimState extends State<Grim>
 
   List<MyEditableAndResult> rows;
 
-  double grimScore;
+  double errorCount;
+  String grimScore;
 
 
   @override
@@ -33,18 +34,33 @@ class GrimState extends State<Grim>
   void _onChanged() {
 
     void reset(){
-
+      grimScore = '';
+      errorCount = null;
+      rows.forEach((MyEditableAndResult r){
+        r.myState.value.clear();
+        r.myState.setState(() {});
+      });
     }
 
     double _sampleSize = double.tryParse(sampleSize.text);
+
     if(_sampleSize==null){reset();return;}
 
+    errorCount = 0.0;
     rows.forEach((MyEditableAndResult r){
-      double val = double.tryParse(r.input.text);
-      if(val==null) {reset(); return;}
-      r.value.text = val.toString();
+      double val = double.tryParse(r.myState.input.text);
+
+      if(val!=null) {
+        double expected = (val * _sampleSize).round().toDouble() / _sampleSize;
+        if(expected!=val) errorCount ++;
+        r.myState.value.text = expected.toString();
+        r.myState.setState(() {});
+      }
     });
 
+    if(errorCount==0) grimScore = '0';
+    else if(errorCount <= 2) grimScore = '1';
+    else grimScore = '2 or 4';
 
     setState(() {});
   }
@@ -57,7 +73,8 @@ class GrimState extends State<Grim>
         Row(
           children: <Widget>[
             MyEditable(title: 'Sample Size', onChanged: _onChanged, controller: sampleSize),
-            MyResult(title: "Grim score", value: safeVal(grimScore)),
+            MyResult(title: "Errors", value: safeVal(errorCount)),
+            MyResult(title: "Grim score", value: grimScore),
           ],
         ),
         Divider(height: 30.0,color: Colors.black45,),
@@ -70,7 +87,7 @@ class GrimState extends State<Grim>
               rows.add(generateRow());
               setState(() {});
               },
-label: Text('enter more data'),
+label: Text('add more data'),
             ),])
       ]),
     );
@@ -81,9 +98,10 @@ label: Text('enter more data'),
     m = MyEditableAndResult(
         editableTitle: 'Mean',
         resultTitle: 'Expected mean',
-        onChanged: ()=> _onChanged,
+        onChanged: _onChanged,
         more: IconButton(icon: Icon(Icons.remove), onPressed: (){
           rows.remove(m);
+          _onChanged();
           setState((){});
         },)
     );
